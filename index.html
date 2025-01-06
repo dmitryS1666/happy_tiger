@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyTiger</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="src/jquery.min.js"></script>
+    <script src="src/jquery.easing.min.js"></script>
+</head>
+<body>
+<!--<div id="gamesList"></div>-->
+<div id="app">
+    <audio id="menuMusic" src="res/audio/sound_menu_bg.mp3" loop></audio>
+
+    <div id="welcomeScreen">
+        <a id="bannerLink" href="">
+            <img id="welcomeImage" src="" alt="Welcome">
+        </a>
+    </div>
+
+    <div id="acceptNotification" class="screen hidden">
+        <div class="overlay"></div>
+        <div class="notificationText">ACCEPTED</div>
+    </div>
+
+    <div id="resetNotification" class="screen hidden">
+        <div class="overlay"></div>
+        <div class="notificationText">Score has been reset</div>
+    </div>
+
+    <div id="containerConfig" class="screen hidden">
+        <div class="containerConfig">
+<!--            <div id="score">-->
+<!--                <img src="res/wild_west/money.png">-->
+<!--                <div id="scoreValue" class="scoreValue"></div>-->
+<!--            </div>-->
+            <div class="buttons">
+                <div id="close_btn">
+                    <img src="res/wild_west/back_button.png">
+                </div>
+                <div id="settingsButton" style="z-index: 1000;">
+                    <img src="res/wild_west/setting.png">
+                </div>
+            </div>
+
+            <div class="privacy_link">
+                <span id="privacy_link">Privacy Policy</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="firstPage" class="screen hidden">
+        <div id="character">
+            <img src="res/wild_west/logo.png">
+        </div>
+        <div id="playBtn">
+            <img src="res/wild_west/play_button.png">
+        </div>
+    </div>
+
+    <div id="gamesPage" class="screen hidden">
+        <div class="checkbox-container">
+            <label class="checkbox-item">
+                <input type="radio" name="image-checkbox" value="spinJackPage" class="image-checkbox" onchange="adjustImages(this)">
+                <img src="res/wild_west/spin_jack_logo.png" alt="Image 1">
+            </label>
+            <label class="checkbox-item">
+                <input type="radio" name="image-checkbox" value="mostWantedPage" class="image-checkbox" onchange="adjustImages(this)">
+                <img src="res/wild_west/most_wanted_logo.png" alt="Image 2">
+            </label>
+            <label class="checkbox-item">
+                <input type="radio" name="image-checkbox" value="oldSaloonPage" class="image-checkbox" onchange="adjustImages(this)">
+                <img src="res/wild_west/old_saloon_logo.png" alt="Image 3">
+            </label>
+        </div>
+        <div id="continue">
+            <img src="res/wild_west/continue_button.png">
+        </div>
+    </div>
+
+    <div id="preloaderPage" class="screen">
+        <div id="preloader">
+            <div id="percentage">0%</div>
+            <div id="percentage_text">Loading...</div>
+            <div class="barcontainer">
+                <div class="bar" style="height:100%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="acceptPage" class="screen hidden">
+        <div class="title">Privacy Policy</div>
+
+        <div class="text">
+            <p>you can read our<br>privacy policy</p>
+        </div>
+
+        <div class="rawThird">
+            <button id="readPrivacyPolicy" class="reset_button">
+                Privacy policy
+            </button>
+        </div>
+
+        <div id="okAcceptPage">
+            <img src="res/wild_west/accept_button.png">
+        </div>
+    </div>
+
+    <div id="settings" class="screen hidden">
+        <div class="title">SETTINGS</div>
+
+        <div class="switchRawFirst">
+            <span class="switchSpan">Music</span>
+            <input type="checkbox" hidden="hidden" id="toggle-music">
+            <label class="switch" for="toggle-music"></label>
+        </div>
+
+        <div class="switchRawSecond">
+            <span class="switchSpan">SFX</span>
+            <input type="checkbox" hidden="hidden" id="toggle-vibration">
+            <label class="switch" for="toggle-vibration"></label>
+        </div>
+
+        <div id="resetGame">
+            <img src="res/wild_west/reset_button.png">
+        </div>
+    </div>
+
+    <div id="winPage" class="screen hidden">
+        <div class="score">
+            <div class="flash"></div>
+            <div class="scoreText">WIN</div>
+            <div class="scoreValue">
+                <p id="winValue" class="hidden">
+                    0
+                </p>
+            </div>
+        </div>
+        <div class="btn">
+            <button id="backWin">
+                <img src="res/wild_west/back_button.png">
+            </button>
+            <button id="againWin">
+                <img src="res/wild_west/again_button.png">
+            </button>
+        </div>
+    </div>
+
+    <div id="failPage" class="screen hidden">
+        <div class="score">
+            <div class="scoreText">LOSE</div>
+            <div class="scoreValue">
+                <p>0</p>
+            </div>
+        </div>
+        <div class="btn">
+            <button id="backFail">
+                <img src="res/wild_west/back_button.png">
+            </button>
+            <button id="againFail">
+                <img src="res/wild_west/again_button.png">
+            </button>
+        </div>
+    </div>
+
+    <div id="spinJackPage" class="screen hidden">
+        <div id="spinJackCanvas">
+            <div class="reels">
+                <div class="reel" id="reel1"></div>
+                <div class="reel" id="reel2"></div>
+                <div class="reel" id="reel3"></div>
+                <div class="reel" id="reel4"></div>
+            </div>
+        </div>
+
+        <div id="gameScoreSpinJack">
+            <div class="betControlSpinJack">
+                <span id="currentBetSpinJack">10</span>
+                <button id="minusBetSpinJack">
+                    <img src="res/wild_west/minus_button.png">
+                </button>
+                <button id="plusBetSpinJack">
+                    <img src="res/wild_west/plus_button.png">
+                </button>
+            </div>
+            <button id="backSpinJack">
+                <img src="res/wild_west/back_button.png">
+            </button>
+            <button id="spinSpinJackButton">
+                <img src="res/wild_west/play_button.png">
+            </button>
+        </div>
+    </div>
+
+    <div id="mostWantedPage" class="screen hidden">
+        <div id="rouletteContainer">
+            <canvas id="rouletteCanvas" width="480" height="480"></canvas>
+
+            <div id="gameScoreRoulette">
+                <div class="betControlRoulette">
+                    <span id="currentBetRoulette">10</span>
+                    <button id="minusBetRoulette">
+                        <img src="res/wild_west/minus_button.png">
+                    </button>
+                    <button id="plusBetRoulette">
+                        <img src="res/wild_west/plus_button.png">
+                    </button>
+                </div>
+                <button id="backRoulette">
+                    <img src="res/wild_west/back_button.png">
+                </button>
+                <button id="spinButton">
+                    <img src="res/wild_west/play_button.png">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="oldSaloonPage" class="screen hidden">
+        <div id="oldSaloonCanvas"></div>
+        <div id="startOldSaloonGame">
+            <div class="text blink">
+                <p>Tap to start</p>
+            </div>
+        </div>
+        <div id="gameScoreOldSaloon">
+            <button id="backOldSaloon">
+                <img src="res/wild_west/back_button.png">
+            </button>
+            <button id="scoreGameOldSaloon">
+                <span id="scoreGameOS">0</span>
+                <img src="res/wild_west/empty_button.png">
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="dist/index.js"></script>
+</body>
+</html>
