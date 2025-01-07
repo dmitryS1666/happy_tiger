@@ -367,13 +367,22 @@ if (continueBtn) {
 
 window.adjustImages = function(selectedCheckbox) {
     const allImages = document.querySelectorAll(".checkbox-item img");
+    const allTexts = document.querySelectorAll(".checkbox-item .game_text");
 
     allImages.forEach(image => {
-        image.style.transform = "scale(1)";
+        image.style.transform = "scale(1) translateX(-50%)";
     });
 
     const selectedImage = selectedCheckbox.nextElementSibling;
-    selectedImage.style.transform = "scale(1.1)";
+    selectedImage.style.transform = "scale(1.1) translateX(-50%)";
+
+    allTexts.forEach(text => {
+        text.style.color = "white";
+    });
+
+
+    const selectedText = selectedCheckbox.nextElementSibling.nextElementSibling;
+    selectedText.style.color = "#FFDA62";
 }
 
 function updatePercentage(percentageElement, progress) {

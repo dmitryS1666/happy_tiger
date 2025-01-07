@@ -285,12 +285,33 @@ html, body, button, p, span {
     width: 100%;
     transition: transform 0.3s ease;
     display: block;
-    transform: translateX(15%);
+    text-align: center;
+    position: relative;
+    margin-bottom: 30px;
 }
 
-.checkbox-item img {
-    object-fit: cover;
-    transition: transform 0.3s ease;
+.checkbox-item .game_img,
+.checkbox-item .game_text,
+.checkbox-item .game_bg {
+    display: block;
+    text-align: center;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 22px;
+}
+
+.checkbox-item .game_text {
+    margin-bottom: -28px;
+    z-index: 1;
+    position: absolute;
+    padding-top: 15px;
+}
+
+.checkbox-item .game_img {
+    margin-bottom: -10px;
+    z-index: 1;
 }
 
 .checkbox-item input[type="radio"] {
