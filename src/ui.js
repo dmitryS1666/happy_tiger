@@ -183,14 +183,6 @@ if (firstPageTap) {
     });
 }
 
-// BACK_WIN or FAIL_WIN
-const backWinBtn = document.getElementById('backWin');
-if (backWinBtn) {
-    backWinBtn.addEventListener("click", () => {
-        switchScreen('gamesPage');
-    });
-}
-
 // AGAIN_WIN or AGAIN_WIN
 const againWinBtn = document.getElementById('againWin');
 if (againWinBtn) {
@@ -302,6 +294,9 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
 
     // Показываем прелоадер
     const targetScreen = document.getElementById(screenId);
+    console.log('targetScreen: ');
+    console.log(targetScreen);
+    console.log('-----------------------------');
     targetScreen.classList.remove('hidden');
     showInfoBlock();
 

@@ -441,9 +441,9 @@ input:checked + .switch:active::before {
 
 
 
-/*---------------WIN + FAIL--------------*/
+/*------------- WIN + FAIL ---------------*/
 #winPage, #failPage {
-    background: url(../res/wild_west/old_saloon_bg.png) no-repeat;
+    background: url(../res/wild_west/gold_tiger_bg.png) no-repeat;
     background-size: cover;
     width: 100%;
     height: 100vh;
@@ -483,38 +483,63 @@ input:checked + .switch:active::before {
 #winPage .score,
 #failPage .score {
     width: 100%;
-    height: 330px;
+    height: 440px;
     text-align: center;
     position: absolute;
     left: -50%;
     transform: translateX(50%);
     top: 20%;
-    background: url(../res/wild_west/big_star.png) no-repeat center center;
+    background: url(../res/wild_west/win_bg.png) no-repeat center center;
+    background-size: cover;
+}
+
+#winPage .win_gold {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 30px;
 }
 
 #failPage .score {
-    background: url(../res/wild_west/big_star_lose.png) no-repeat center center;
+    background: url(../res/wild_west/fail_bg.png) no-repeat center center;
+    background-size: cover;
 }
 
 #winPage .score .scoreText,
 #failPage .score .scoreText {
     font-weight: 400;
     color: white;
-    font-size: 30pt;
-    margin-top: 120px;
+    font-size: 60px;
+    margin-top: 75px;
     position: relative;
     z-index: 2;
+    background: -webkit-linear-gradient(#FFDA62, #992600);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#failPage .score .scoreText {
+    font-size: 48px;
+    /*margin-top: 100px;*/
+    background: -webkit-linear-gradient(white, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #winPage .score .scoreValue,
 #failPage .score .scoreValue {
     font-weight: 400;
-    color: #820C06;
-    font-size: 70px;
+    color: white;
+    font-size: 55px;
     position: relative;
     left: 50%;
-    transform: translateX(-50%) translateY(-120px);
+    transform: translateX(-50%) translateY(70px);
     z-index: 2;
+}
+
+#failPage .score .scoreValue {
+    transform: translateX(-50%) translateY(-20px);
 }
 
 #winPage .btn,
@@ -527,7 +552,6 @@ input:checked + .switch:active::before {
     transform: translateX(-50%) translateY(-45px);
 }
 
-#winPage #backWin,
 #winPage #againWin,
 #failPage #backFail,
 #failPage #againFail {
@@ -538,18 +562,17 @@ input:checked + .switch:active::before {
     width: 185px;
 }
 
-#winPage #backWin,
 #failPage #backFail {
     left: 0;
 }
 
 #winPage #againWin,
 #failPage #againFail {
-    right: 0;
-    width: 178px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
 }
 
-#winPage #backWin img,
 #winPage #againWin img,
 #failPage #backFail img,
 #failPage #againFail img {
@@ -973,13 +996,11 @@ input:checked + .switch:active::before {
 
 /*----------------------SCORE--------------------------*/
 #score {
-    width: 45%;
+    width: 100%;
     height: 60px;
-    margin-left: 25px;
     z-index: 1000;
-    left: 0;
     position: absolute;
-    background: url(res/wild_west/score.png) no-repeat;
+    top: 15px;
 }
 
 #score img {
@@ -991,12 +1012,16 @@ input:checked + .switch:active::before {
 
 #score .scoreValue {
     text-align: center;
-    width: 60%;
+    width: 100%;
     color: white;
     line-height: 50px;
-    float: left;
     font-size: 22px;
     font-weight: 400;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url(res/wild_west/bg.png) no-repeat;
+    background-position-x: center;
+    position: absolute;
 }
 /*--------------------END SCORE------------------------*/
 
@@ -1042,6 +1067,8 @@ input:checked + .switch:active::before {
     height: 55px;
     width: 55px;
     margin-top: 10px;
+    z-index: 1010;
+    position: relative;
 }
 
 #settingsButton img,
