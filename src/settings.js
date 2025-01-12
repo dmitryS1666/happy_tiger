@@ -13,10 +13,10 @@ let settings;
 // Загрузка настроек из LocalStorage
 function loadSettings() {
     menuMusic = document.getElementById('menuMusic');
-    localStorage.setItem('wildWestSettings', JSON.stringify({ music: true, vibration: true }));
+    localStorage.setItem('happyTigerSettings', JSON.stringify({ music: true, vibration: true }));
     localStorage.setItem('score', 1000);
 
-    const storedSettings = JSON.parse(localStorage.getItem('wildWestSettings'));
+    const storedSettings = JSON.parse(localStorage.getItem('happyTigerSettings'));
     if (storedSettings) {
         settings = storedSettings;
     }
@@ -26,7 +26,7 @@ function loadSettings() {
 }
 
 function saveSettings() {
-    localStorage.setItem('wildWestSettings', JSON.stringify(settings));
+    localStorage.setItem('happyTigerSettings', JSON.stringify(settings));
 }
 
 document.getElementById('toggle-music').addEventListener('change', (event) => {

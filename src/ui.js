@@ -109,7 +109,7 @@ if (resetGameBtn) {
         clickEffect();
 
         localStorage.setItem('score', 1000);
-        localStorage.setItem('wildWestSettings', JSON.stringify({ music: true, vibration: true }));
+        localStorage.setItem('happyTigerSettings', JSON.stringify({ music: true, vibration: true }));
 
         // Показать уведомление
         const resetNotification = document.getElementById('resetNotification');
@@ -151,19 +151,15 @@ if (continueFailBtn) {
 }
 
 // BACK button - closeSettingsBtn
-const closeSettingsBtn = document.getElementById('close_btn');
-if (closeSettingsBtn) {
-    closeSettingsBtn.addEventListener('click', () => {
-        let page = localStorage.getItem('lastPageBeforeSettings');
-        switchScreen(page);
-    });
-}
-
-// BACK button - close_btn
-const closeBtn = document.getElementById('close_btn');
-if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-        switchScreen('menuPage');
+const goBackBtn = document.getElementById('close_btn');
+if (goBackBtn) {
+    goBackBtn.addEventListener('click', () => {
+        if (getCurrentPage() === 'gamesPage') {
+            switchScreen('firstPage');
+        } else {
+            let page = localStorage.getItem('lastPage');
+            switchScreen(page);
+        }
     });
 }
 
@@ -229,9 +225,8 @@ const settingsButton = document.getElementById('settingsButton');
 if (settingsButton) {
     settingsButton.addEventListener('click', () => {
         clickEffect();
-        localStorage.setItem('lastPageBeforeSettings', getCurrentPage());
 
-        switchScreen('settings'); // Переход к экрану основных вопросов
+        switchScreen('settingsPage'); // Переход к экрану основных вопросов
     });
 }
 
@@ -258,8 +253,7 @@ document.querySelector('.checkbox-container').addEventListener('change', (event)
 const settingBtn = document.getElementById('settingBtn');
 if (settingBtn) {
     settingBtn.addEventListener('click', () => {
-        localStorage.setItem('lastPageBeforeSettings', getCurrentPage());
-        switchScreen('settings'); // Переход к экрану основных вопросов
+        switchScreen('settingsPage'); // Переход к экрану основных вопросов
     });
 }
 
@@ -279,13 +273,27 @@ function showPreloader() {
     });
 }
 
-function showInfoBlock() {
-    const infoBlock = document.getElementById('containerConfig');
-    infoBlock.classList.remove('hidden');
+function showInfoBlock(mainBlock, showScore, showPolicyLink) {
+    if (mainBlock) {
+        const infoBlock = document.getElementById('containerConfig');
+        infoBlock.classList.remove('hidden');
+    }
+
+    if (showScore) {
+        const score = document.getElementById('score');
+        score.classList.remove('hidden');
+    }
+
+    if (showPolicyLink) {
+        const privacy_link_config = document.getElementById('privacy_link_config');
+        privacy_link_config.classList.remove('hidden');
+    }
 }
 
 function switchScreen(screenId, levelScore= 0, winBg = 'default') {
     clickEffect();
+
+    localStorage.setItem('lastPage', getCurrentPage());
 
     const screens = document.querySelectorAll('.screen');
 
@@ -296,14 +304,19 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
     const targetScreen = document.getElementById(screenId);
     console.log('targetScreen: ');
     console.log(targetScreen);
+    console.log(targetScreen.classList);
     console.log('-----------------------------');
     targetScreen.classList.remove('hidden');
-    showInfoBlock();
+    showInfoBlock(false, false, false);
+
+    if (screenId === 'settingsPage' || screenId === 'gamesPage') {
+        showInfoBlock(true, false, true);
+    }
 
     if (screenId === 'winPage') {
         stopMusic();
         showWinPage(levelScore, winBg);
-        showInfoBlock();
+        showInfoBlock(true, false, false);
     }
     if (screenId === 'failPage') {
         stopMusic();
@@ -311,19 +324,19 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
             failSound.volume = 0.5;
             failSound.play()
         }
-        showInfoBlock();
+        showInfoBlock(true, false, false);
         runMusic();
     }
     if (screenId === 'spinJackPage') {
-        showInfoBlock();
+        showInfoBlock(true, true, false);
         setupSpinJack();
     }
     if (screenId === 'mostWantedPage') {
-        showInfoBlock();
+        showInfoBlock(true, true, false);
         setupRoulette();
     }
     if (screenId === 'oldSaloonPage') {
-        showInfoBlock();
+        showInfoBlock(true, true, false);
     }
 
     document.getElementById('scoreValue').innerText = localStorage.getItem('score');

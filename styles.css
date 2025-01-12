@@ -203,7 +203,7 @@ html, body, button, p, span {
 /*----------- FIRST PAGE ----------------*/
 
 /*------------- MENU PAGE ----------------*/
-#settings,
+#settingsPage,
 #gamesPage, #acceptPage {
     position: absolute;
 
@@ -219,7 +219,7 @@ html, body, button, p, span {
     background-position-y: center;
 }
 
-#settings:before,
+#settingsPage:before,
 #acceptPage:before,
 #gamesPage:before {
     content: '';
@@ -235,7 +235,7 @@ html, body, button, p, span {
     background-color:rgba(0, 0, 0, .4);
 }
 
-#settings .title,
+#settingsPage .title,
 #acceptPage .title,
 #gamesPage .title {
     font-size: 35px;
@@ -249,7 +249,7 @@ html, body, button, p, span {
 }
 /*----------------------------*/
 #gamesPage #continue,
-#settings #resetGame,
+#settingsPage #resetGame,
 #acceptPage #okAcceptPage {
     position: absolute;
     bottom: 20px;
@@ -257,11 +257,11 @@ html, body, button, p, span {
     /*width: 100%;*/
 }
 
-#settings #resetGame {
+#settingsPage #resetGame {
     right: 20px !important;
 }
 
-#settings #resetGame img,
+#settingsPage #resetGame img,
 #acceptPage #okAcceptPage img {
     /*width: 50%;*/
 }
@@ -326,7 +326,7 @@ html, body, button, p, span {
 
 /*----------- SETTINGS PAGE --------------*/
 
-#settings #resetGame,
+#settingsPage #resetGame,
 #acceptPage #okAcceptPage {
     right: 20px;
     left: unset;
