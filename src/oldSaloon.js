@@ -9,12 +9,12 @@ let result = 0;
 let isGameRunning = false;
 
 const objects = [
-    { name: 'HEAD', weight: 50, speed: 2, icon: 'res/wild_west/oldSaloon/head.png' },
-    { name: 'HAT', weight: 50, speed: 2, icon: 'res/wild_west/oldSaloon/hat.png' },
-    { name: 'MONEY', weight: 100, speed: 3, icon: 'res/wild_west/oldSaloon/money.png' },
-    { name: 'GUN', weight: 10, speed: 1, icon: 'res/wild_west/oldSaloon/gun.png' },
-    { name: 'BOTTLE', weight: 50, speed: 2, icon: 'res/wild_west/oldSaloon/bottle.png' },
-    { name: 'BANK', weight: 100, speed: 3, icon: 'res/wild_west/oldSaloon/bank.png' },
+    { name: 'HEAD', weight: 50, speed: 2, icon: 'res/happy_tiger/oldSaloon/head.png' },
+    { name: 'HAT', weight: 50, speed: 2, icon: 'res/happy_tiger/oldSaloon/hat.png' },
+    { name: 'MONEY', weight: 100, speed: 3, icon: 'res/happy_tiger/oldSaloon/money.png' },
+    { name: 'GUN', weight: 10, speed: 1, icon: 'res/happy_tiger/oldSaloon/gun.png' },
+    { name: 'BOTTLE', weight: 50, speed: 2, icon: 'res/happy_tiger/oldSaloon/bottle.png' },
+    { name: 'BANK', weight: 100, speed: 3, icon: 'res/happy_tiger/oldSaloon/bank.png' },
 ];
 
 // Функция для запуска игры
@@ -107,7 +107,7 @@ function endGame() {
         localStorage.setItem('lastGame', 'oldSaloonPage');
 
         if (result !== 0) {
-            switchScreen('winPage', result, 'url(../res/wild_west/old_saloon_bg.png) no-repeat');
+            switchScreen('winPage', result, 'url(../res/happy_tiger/old_saloon_bg.png) no-repeat');
         } else {
             switchScreen('failPage');
         }
@@ -132,7 +132,7 @@ function updateLifeIcons() {
     extraPointDiv.innerHTML = '';
     for (let i = 0; i < 3; i++) {
         const lifeIcon = document.createElement('img');
-        lifeIcon.src = i < (3 - lives) ? 'res/wild_west/dead_life.png' : 'res/wild_west/active_life.png';
+        lifeIcon.src = i < (3 - lives) ? 'res/happy_tiger/dead_life.png' : 'res/happy_tiger/active_life.png';
         extraPointDiv.appendChild(lifeIcon);
     }
 }

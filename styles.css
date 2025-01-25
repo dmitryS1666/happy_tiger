@@ -104,7 +104,7 @@ html, body, button, p, span {
     width: 100%;
     z-index: 1000;
     height: 101vh;
-    background: url(../res/wild_west/main_bg.png);
+    background: url(../res/happy_tiger/main_bg.png);
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
@@ -181,7 +181,7 @@ html, body, button, p, span {
     width: 100%;
     z-index: 1000;
     height: 101vh;
-    background: url(../res/wild_west/main_bg.png);
+    background: url(../res/happy_tiger/main_bg.png);
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
@@ -213,7 +213,7 @@ html, body, button, p, span {
     z-index: 1000;
     height: 101vh;
 
-    background: url(../res/wild_west/main_bg.png);
+    background: url(../res/happy_tiger/main_bg.png);
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
@@ -349,7 +349,7 @@ html, body, button, p, span {
     left: -10px;
     width: 50px;
     height: 47px;
-    background-image: url(res/wild_west/star.png);
+    background-image: url(res/happy_tiger/star.png);
     background-size: cover;
 }
 .switch:active::before {
@@ -360,7 +360,7 @@ input:checked + .switch {
 }
 input:checked + .switch::before {
     left: 55px;
-    background-image: url(res/wild_west/star.png);
+    background-image: url(res/happy_tiger/star.png);
     background-size: cover;
 }
 input:checked + .switch:active::before {
@@ -443,7 +443,7 @@ input:checked + .switch:active::before {
 
 /*------------- WIN + FAIL ---------------*/
 #winPage, #failPage {
-    background: url(../res/wild_west/gold_tiger_bg.png) no-repeat;
+    background: url(../res/happy_tiger/gold_tiger_bg.png) no-repeat;
     background-size: cover;
     width: 100%;
     height: 100vh;
@@ -458,7 +458,7 @@ input:checked + .switch:active::before {
     width: 100%;
     height: 100%;
     position: absolute;
-    background: url(../res/wild_west/flash.png) no-repeat center center;
+    background: url(../res/happy_tiger/flash.png) no-repeat center center;
     animation: flashAnimation 2s infinite ease-in-out;
     z-index: 1;
     scale: 1.2;
@@ -489,7 +489,7 @@ input:checked + .switch:active::before {
     left: -50%;
     transform: translateX(50%);
     top: 20%;
-    background: url(../res/wild_west/win_bg.png) no-repeat center center;
+    background: url(../res/happy_tiger/win_bg.png) no-repeat center center;
     background-size: cover;
 }
 
@@ -502,7 +502,7 @@ input:checked + .switch:active::before {
 }
 
 #failPage .score {
-    background: url(../res/wild_west/fail_bg.png) no-repeat center center;
+    background: url(../res/happy_tiger/fail_bg.png) no-repeat center center;
     background-size: cover;
 }
 
@@ -706,7 +706,19 @@ input:checked + .switch:active::before {
     position: absolute;
     width: 100%;
     height: 100vh;
-    background-image: url(res/wild_west/most_wanted_bg.png);
+    background-image: url(res/happy_tiger/china_gift_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#chinaGiftPage {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-image: url(res/happy_tiger/china_gift_bg.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -716,38 +728,43 @@ input:checked + .switch:active::before {
 
 #rouletteCanvas {
     position: absolute;
-    top: 15%;
-    left: -60%;
-    width: 120%;
+    bottom: -20%;
+    left: 50%;
+    width: 145%;
+    transform: translateX(-50%) rotate(-90deg);
 }
 
 #gameScoreRoulette {
-    height: 100px;
+    /*height: 100px;*/
     width: 100%;
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 20%;
+    text-align: center;
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
 }
 
 .betControlRoulette {
     position: absolute;
-    bottom: 155px;
-    right: 0;
-    width: 44%;
+    bottom: 60%;
+    width: 100%;
 }
 
 #currentBetRoulette {
-    width: 95%;
+    width: 85%;
     position: absolute;
     top: -50px;
-    border: 2px solid #F6AA73;
-    background: white;
-    border-radius: 5px;
-    height: 40px;
+    height: 65px;
     text-align: center;
-    line-height: 40px;
+    line-height: 65px;
     font-size: 24px;
+    left: 50%;
+
+    color: white;
+    transform: translateX(-50%);
+    border: 5px solid #0000;
+    border-radius: 35px;
+    background: conic-gradient(#84192F 0 0) padding-box, linear-gradient(#FFC61C, #997711) border-box;
 }
 
 .betControlRoulette button {
@@ -759,30 +776,32 @@ input:checked + .switch:active::before {
 #backRoulette,
 #spinButton {
     position: absolute;
-    bottom: -5px;
     border: none;
     background: none;
     padding: unset;
-    width: 180px;
+    width: 125px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#minusBetRoulette, #plusBetRoulette {
+    width: 54px;
+    height: 55px;
+    position: absolute;
+    background-image: url(res/happy_tiger/empty_button.png);
+
+    color: #FFDA62;
+    font-size: 50px;
+    line-height: 55px;
+    top: -39px;
 }
 
 #minusBetRoulette {
-    left: 0;
-    position: absolute;
-    top: 0;
+    left: 10%;
 }
 
 #plusBetRoulette {
-    right: 5px;
-    position: absolute;
-}
-
-#backRoulette {
-    left: 0;
-}
-
-#spinButton {
-    right: 0;
+    right: 10%;
 }
 
 /*--------------END MOST WANTED PAGE--------------------*/
@@ -793,7 +812,7 @@ input:checked + .switch:active::before {
     position: absolute;
     width: 100%;
     height: 100vh;
-    background-image: url(res/wild_west/spin_jack_bg.png);
+    background-image: url(res/happy_tiger/spin_jack_bg.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -908,7 +927,7 @@ input:checked + .switch:active::before {
 }
 
 .highlight {
-    background: url(../res/wild_west/flash.png) no-repeat center center;
+    background: url(../res/happy_tiger/flash.png) no-repeat center center;
     animation: flashAnimation 2s infinite ease-in-out;
     width: 100%;
     height: 100%;
@@ -919,28 +938,16 @@ input:checked + .switch:active::before {
 /*---------------END SPIN JACK PAGE--------------------*/
 
 
-/*-----------------OLD SALOON PAGE---------------------*/
+/*-----------------CHINA GIFT PAGE---------------------*/
 
-#oldSaloonPage {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background-image: url(res/wild_west/old_saloon_bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#oldSaloonCanvas {
+#chinaGiftCanvas {
     position: absolute;
     top: 10%;
     width: 100%;
     height: 70%;
 }
 
-#startOldSaloonGame {
+#startChinaGiftGame {
     width: 100%;
     height: 100%;
     text-align: center;
@@ -948,13 +955,13 @@ input:checked + .switch:active::before {
     position: absolute;
 }
 
-#startOldSaloonGame .text{
+#startChinaGiftGame .text{
     text-align: center;
     margin-top: 100%;
     font-size: 30px;
 }
 
-#gameScoreOldSaloon {
+#gameScoreChinaGift {
     height: 100px;
     width: 100%;
     position: absolute;
@@ -964,8 +971,8 @@ input:checked + .switch:active::before {
     z-index: 1001;
 }
 
-#backOldSaloon,
-#scoreGameOldSaloon {
+#backChinaGift,
+#scoreGameChinaGift {
     position: absolute;
     bottom: -5px;
     border: none;
@@ -974,15 +981,15 @@ input:checked + .switch:active::before {
     width: 180px;
 }
 
-#backOldSaloon {
+#backChinaGift {
     left: 0;
 }
 
-#scoreGameOldSaloon {
+#scoreGameChinaGift {
     right: 0;
 }
 
-#scoreGameOldSaloon span {
+#scoreGameChinaGift span {
     color: white;
     font-weight: 400;
     font-size: 32px;
@@ -1019,7 +1026,7 @@ input:checked + .switch:active::before {
     font-weight: 400;
     left: 50%;
     transform: translateX(-50%);
-    background: url(res/wild_west/bg.png) no-repeat;
+    background: url(res/happy_tiger/bg.png) no-repeat;
     background-position-x: center;
     position: absolute;
 }

@@ -2,14 +2,14 @@ import {isCurrentScreen, switchScreen} from "./ui";
 import {slotEffect} from "./settings";
 
 const symbols = [
-    'res/wild_west/spinJack/bank.png',
-    'res/wild_west/spinJack/bottle.png',
-    'res/wild_west/spinJack/gold.png',
-    'res/wild_west/spinJack/gun.png',
-    'res/wild_west/spinJack/hat.png',
-    'res/wild_west/spinJack/head.png',
-    'res/wild_west/spinJack/money.png',
-    'res/wild_west/spinJack/tecila.png'
+    'res/happy_tiger/spinJack/bank.png',
+    'res/happy_tiger/spinJack/bottle.png',
+    'res/happy_tiger/spinJack/gold.png',
+    'res/happy_tiger/spinJack/gun.png',
+    'res/happy_tiger/spinJack/hat.png',
+    'res/happy_tiger/spinJack/head.png',
+    'res/happy_tiger/spinJack/money.png',
+    'res/happy_tiger/spinJack/tecila.png'
 ]; // Символы для барабанов
 
 let reels = [[], [], [], []]; // Состояние барабанов
@@ -200,7 +200,7 @@ function analyzeWinning() {
             localStorage.setItem('lastGame', 'spinJackPage');
 
             if (result !== 0) {
-                switchScreen('winPage', result, 'url(../res/wild_west/spin_jack_bg.png) no-repeat')
+                switchScreen('winPage', result, 'url(../res/happy_tiger/spin_jack_bg.png) no-repeat')
             } else {
                 switchScreen('failPage')
             }

@@ -39,10 +39,10 @@
             </div>
             <div class="buttons">
                 <div id="close_btn">
-                    <img src="res/wild_west/back_button.png">
+                    <img src="res/happy_tiger/back_button.png">
                 </div>
                 <div id="settingsButton" style="z-index: 1000;">
-                    <img src="res/wild_west/setting.png">
+                    <img src="res/happy_tiger/setting.png">
                 </div>
             </div>
 
@@ -54,10 +54,10 @@
 
     <div id="firstPage" class="screen hidden">
         <div id="character">
-            <img src="res/wild_west/logo.png">
+            <img src="res/happy_tiger/logo.png">
         </div>
         <div id="playBtn">
-            <img src="res/wild_west/play_button.png">
+            <img src="res/happy_tiger/play_button.png">
         </div>
     </div>
 
@@ -65,25 +65,25 @@
         <div class="checkbox-container">
             <label class="checkbox-item">
                 <input type="radio" name="image-checkbox" value="spinJackPage" class="image-checkbox" onchange="adjustImages(this)">
-                <img class="game_img" src="res/wild_west/mao_spin.png">
+                <img class="game_img" src="res/happy_tiger/mao_spin.png">
                 <span class="game_text">MEAO SPIN</span>
-                <img class="game_bg" src="res/wild_west/bg.png">
+                <img class="game_bg" src="res/happy_tiger/bg.png">
             </label>
             <label class="checkbox-item">
                 <input type="radio" name="image-checkbox" value="mostWantedPage" class="image-checkbox" onchange="adjustImages(this)">
-                <img class="game_img" src="res/wild_west/gold_tiger.png">
+                <img class="game_img" src="res/happy_tiger/gold_tiger.png">
                 <span class="game_text">GOLD TIGER</span>
-                <img class="game_bg" src="res/wild_west/bg.png">
+                <img class="game_bg" src="res/happy_tiger/bg.png">
             </label>
             <label class="checkbox-item">
-                <input type="radio" name="image-checkbox" value="oldSaloonPage" class="image-checkbox" onchange="adjustImages(this)">
-                <img class="game_img" src="res/wild_west/china_gift.png">
+                <input type="radio" name="image-checkbox" value="chinaGiftPage" class="image-checkbox" onchange="adjustImages(this)">
+                <img class="game_img" src="res/happy_tiger/china_gift.png">
                 <span class="game_text">CHINA GIFT</span>
-                <img class="game_bg" src="res/wild_west/bg.png">
+                <img class="game_bg" src="res/happy_tiger/bg.png">
             </label>
         </div>
         <div id="continue">
-            <img src="res/wild_west/continue_button.png">
+            <img src="res/happy_tiger/continue_button.png">
         </div>
     </div>
 
@@ -111,7 +111,7 @@
         </div>
 
         <div id="okAcceptPage">
-            <img src="res/wild_west/accept_button.png">
+            <img src="res/happy_tiger/accept_button.png">
         </div>
     </div>
 
@@ -131,7 +131,7 @@
         </div>
 
         <div id="resetGame">
-            <img src="res/wild_west/reset_button.png">
+            <img src="res/happy_tiger/reset_button.png">
         </div>
     </div>
 
@@ -139,7 +139,7 @@
         <div class="score">
             <div class="flash"></div>
             <div class="scoreText">WIN</div>
-            <img class="win_gold" src="res/wild_west/win_gold.png">
+            <img class="win_gold" src="res/happy_tiger/win_gold.png">
             <div class="scoreValue">
                 <p id="winValue" class="hidden">
                     0
@@ -148,7 +148,7 @@
         </div>
         <div class="btn">
             <button id="againWin">
-                <img src="res/wild_west/again_button.png">
+                <img src="res/happy_tiger/again_button.png">
             </button>
         </div>
     </div>
@@ -162,7 +162,7 @@
         </div>
         <div class="btn">
             <button id="againFail">
-                <img src="res/wild_west/again_button.png">
+                <img src="res/happy_tiger/again_button.png">
             </button>
         </div>
     </div>
@@ -182,40 +182,39 @@
             <div class="betControlSpinJack">
                 <span id="currentBetSpinJack">10</span>
                 <button id="minusBetSpinJack">
-                    <img src="res/wild_west/minus_button.png">
+                    <img src="res/happy_tiger/minus_button.png">
                 </button>
                 <button id="plusBetSpinJack">
-                    <img src="res/wild_west/plus_button.png">
+                    <img src="res/happy_tiger/plus_button.png">
                 </button>
             </div>
             <button id="backSpinJack">
-                <img src="res/wild_west/back_button.png">
+                <img src="res/happy_tiger/back_button.png">
             </button>
             <button id="spinSpinJackButton">
-                <img src="res/wild_west/play_button.png">
+                <img src="res/happy_tiger/play_button.png">
             </button>
         </div>
     </div>
 
-    <div id="mostWantedPage" class="screen hidden">
+    <div id="chinaGiftPage" class="screen hidden">
         <div id="rouletteContainer">
             <canvas id="rouletteCanvas" width="480" height="480"></canvas>
-
-            <div id="gameScoreRoulette">
-                <div class="betControlRoulette">
-                    <span id="currentBetRoulette">10</span>
-                    <button id="minusBetRoulette">
-                        <img src="res/wild_west/minus_button.png">
-                    </button>
-                    <button id="plusBetRoulette">
-                        <img src="res/wild_west/plus_button.png">
-                    </button>
-                </div>
-                <button id="backRoulette">
-                    <img src="res/wild_west/back_button.png">
+            <div class="betControlRoulette">
+                <span id="currentBetRoulette">10</span>
+                <button id="minusBetRoulette">
+                    <span>-</span>
                 </button>
+                <button id="plusBetRoulette">
+                    <span>+</span>
+                </button>
+            </div>
+            <div id="gameScoreRoulette">
+                <!--    <button id="backRoulette">-->
+                <!--        <img src="res/happy_tiger/back_button.png">-->
+                <!--    </button>-->
                 <button id="spinButton">
-                    <img src="res/wild_west/play_button.png">
+                    <img src="res/happy_tiger/play_button.png">
                 </button>
             </div>
         </div>

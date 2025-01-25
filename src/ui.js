@@ -10,7 +10,7 @@ import {
 
 import {checkFirstRunAndLoadData} from "./index";
 import { Plugins } from '@capacitor/core';
-import {setupRoulette} from "./mostWanted";
+import {setupRoulette} from "./chinaGift";
 import {setupSpinJack} from "./spinJack";
 import {startGame} from "./oldSaloon";
 
@@ -214,9 +214,9 @@ if (backRouletteBtn) {
 }
 
 // BACK_OLD_SALOON
-const backOldSaloonBtn = document.getElementById('backOldSaloon');
-if (backOldSaloonBtn) {
-    backOldSaloonBtn.addEventListener("click", () => {
+const backChinaGiftBtn = document.getElementById('backChinaGift');
+if (backChinaGiftBtn) {
+    backChinaGiftBtn.addEventListener("click", () => {
         switchScreen('gamesPage');
     });
 }
@@ -241,9 +241,9 @@ function getCurrentPage() {
     return null; // Если подходящий экран не найден
 }
 
-const startOldSaloonBtn = document.getElementById('startOldSaloonGame');
-if (startOldSaloonBtn) {
-    startOldSaloonBtn.addEventListener('click', startGame);
+const startChinaGiftBtn = document.getElementById('startChinaGiftGame');
+if (startChinaGiftBtn) {
+    startChinaGiftBtn.addEventListener('click', startGame);
 }
 
 document.querySelector('.checkbox-container').addEventListener('change', (event) => {
@@ -274,19 +274,25 @@ function showPreloader() {
 }
 
 function showInfoBlock(mainBlock, showScore, showPolicyLink) {
+    const infoBlock = document.getElementById('containerConfig');
     if (mainBlock) {
-        const infoBlock = document.getElementById('containerConfig');
         infoBlock.classList.remove('hidden');
+    } else {
+        infoBlock.classList.add('hidden');
     }
 
+    const score = document.getElementById('score');
     if (showScore) {
-        const score = document.getElementById('score');
         score.classList.remove('hidden');
+    } else {
+        score.classList.add('hidden');
     }
 
+    const privacy_link_config = document.getElementById('privacy_link_config');
     if (showPolicyLink) {
-        const privacy_link_config = document.getElementById('privacy_link_config');
         privacy_link_config.classList.remove('hidden');
+    } else {
+        privacy_link_config.classList.add('hidden');
     }
 }
 
@@ -331,7 +337,7 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
         showInfoBlock(true, true, false);
         setupSpinJack();
     }
-    if (screenId === 'mostWantedPage') {
+    if (screenId === 'chinaGiftPage') {
         showInfoBlock(true, true, false);
         setupRoulette();
     }

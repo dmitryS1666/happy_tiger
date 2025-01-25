@@ -12,10 +12,10 @@ let score;
 let gameOverRoulette = false; // Флаг для отслеживания состояния игры
 
 const rouletteImage = new Image();
-rouletteImage.src = 'res/wild_west/roulette-img.png'; // Заглушка: путь к изображению рулетки
+rouletteImage.src = 'res/happy_tiger/roulette-img.png'; // Заглушка: путь к изображению рулетки
 
 const roulettePointerImage = new Image();
-roulettePointerImage.src = 'res/wild_west/pointer.png'; // Заглушка: путь к изображению указателя
+roulettePointerImage.src = 'res/happy_tiger/pointer.png'; // Заглушка: путь к изображению указателя
 
 export function setupRoulette() {
     rouletteCanvas = document.getElementById('rouletteCanvas');
@@ -158,7 +158,7 @@ function endGameRoulette(winningSegment, spinButton, minusBtn, plusBtn) {
             localStorage.setItem('lastGame', 'mostWantedPage');
 
             if (result !== 0) {
-                switchScreen('winPage', result, 'url(../res/wild_west/most_wanted_bg.png) no-repeat');
+                switchScreen('winPage', result, 'url(../res/happy_tiger/china_gift_bg.png) no-repeat');
             } else {
                 switchScreen('failPage');
             }
