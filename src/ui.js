@@ -11,7 +11,7 @@ import {
 import {checkFirstRunAndLoadData} from "./index";
 import { Plugins } from '@capacitor/core';
 import {setupRoulette} from "./chinaGift";
-import {setupSpinJack} from "./spinJack";
+import {setupMeaoSpin} from "./meaoSpin";
 import {startGame} from "./oldSaloon";
 
 const { App } = Plugins;
@@ -156,6 +156,10 @@ if (goBackBtn) {
     goBackBtn.addEventListener('click', () => {
         if (getCurrentPage() === 'gamesPage') {
             switchScreen('firstPage');
+        } else if (getCurrentPage() === 'winPage' || getCurrentPage() === 'failPage' ) {
+            switchScreen('gamesPage');
+        } else if (getCurrentPage() === 'meaoSpinPage') {
+            switchScreen('gamesPage');
         } else {
             let page = localStorage.getItem('lastPage');
             switchScreen(page);
@@ -164,9 +168,9 @@ if (goBackBtn) {
 }
 
 // BACK button - close_btn
-const backSpinJackBtn = document.getElementById('backSpinJack');
-if (backSpinJackBtn) {
-    backSpinJackBtn.addEventListener('click', () => {
+const backMeaoSpinBtn = document.getElementById('backMeaoSpin');
+if (backMeaoSpinBtn) {
+    backMeaoSpinBtn.addEventListener('click', () => {
         switchScreen('gamesPage');
     });
 }
@@ -322,7 +326,7 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
     if (screenId === 'winPage') {
         stopMusic();
         showWinPage(levelScore, winBg);
-        showInfoBlock(true, false, false);
+        showInfoBlock(true, true, false);
     }
     if (screenId === 'failPage') {
         stopMusic();
@@ -330,12 +334,12 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
             failSound.volume = 0.5;
             failSound.play()
         }
-        showInfoBlock(true, false, false);
+        showInfoBlock(true, true, false);
         runMusic();
     }
-    if (screenId === 'spinJackPage') {
+    if (screenId === 'meaoSpinPage') {
         showInfoBlock(true, true, false);
-        setupSpinJack();
+        setupMeaoSpin();
     }
     if (screenId === 'chinaGiftPage') {
         showInfoBlock(true, true, false);

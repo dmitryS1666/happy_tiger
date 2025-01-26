@@ -2,35 +2,38 @@ import {isCurrentScreen, switchScreen} from "./ui";
 import {slotEffect} from "./settings";
 
 const symbols = [
-    'res/happy_tiger/spinJack/bank.png',
-    'res/happy_tiger/spinJack/bottle.png',
-    'res/happy_tiger/spinJack/gold.png',
-    'res/happy_tiger/spinJack/gun.png',
-    'res/happy_tiger/spinJack/hat.png',
-    'res/happy_tiger/spinJack/head.png',
-    'res/happy_tiger/spinJack/money.png',
-    'res/happy_tiger/spinJack/tecila.png'
+    'res/happy_tiger/meaoSpin/1.png',
+    'res/happy_tiger/meaoSpin/2.png',
+    'res/happy_tiger/meaoSpin/3.png',
+    'res/happy_tiger/meaoSpin/4.png',
+    'res/happy_tiger/meaoSpin/5.png',
+    'res/happy_tiger/meaoSpin/6.png',
+    'res/happy_tiger/meaoSpin/4.png',
+    'res/happy_tiger/meaoSpin/5.png',
+    'res/happy_tiger/meaoSpin/6.png',
 ]; // Символы для барабанов
 
-let reels = [[], [], [], []]; // Состояние барабанов
+let reels = [[], [], [], [], []]; // Состояние барабанов
 let spinning = false; // Флаг вращения
 let reelElements = [];
 let score;
 
-export function setupSpinJack() {
+export function setupMeaoSpin() {
     score = localStorage.getItem('score') || 0;
     reelElements = [
         document.getElementById('reel1'),
         document.getElementById('reel2'),
         document.getElementById('reel3'),
         document.getElementById('reel4'),
+        document.getElementById('reel5'),
     ];
 
-    document.getElementById('currentBetSpinJack').textContent = 10; // Заглушка ставки
+    document.getElementById('currentBetMeaoSpin').textContent = 10;
     document.getElementById('scoreValue').textContent = score;
+    document.getElementById('showResultMeaoSpin').hidden = true;
 
-    const plusBetButton = document.getElementById('plusBetSpinJack'); // Кнопка запуска
-    const minusBetButton = document.getElementById('minusBetSpinJack'); // Кнопка запуска
+    const plusBetButton = document.getElementById('plusBetMeaoSpin');
+    const minusBetButton = document.getElementById('minusBetMeaoSpin');
 
     plusBetButton.disabled = false; // Блокируем кнопку на время вращения
     minusBetButton.disabled = false; // Блокируем кнопку на время вращения
@@ -59,7 +62,7 @@ function initializeReels() {
 // Обновление отображения барабана
 function updateReelDisplay(index) {
     reelElements[index].innerHTML = reels[index]
-        .slice(0, 5) // Показываем первые 5 символов
+        .slice(0, 3) // Показываем первые 3 символов
         .map(symbol => `${addItem(symbol)}`)
         .join('');
 }
@@ -74,9 +77,9 @@ function addItem(src) {
 
 // Функция вращения барабанов
 function spinReels() {
-    const spinButton = document.getElementById('spinSpinJackButton'); // Кнопка запуска
-    const plusBetButton = document.getElementById('plusBetSpinJack'); // Кнопка запуска
-    const minusBetButton = document.getElementById('minusBetSpinJack'); // Кнопка запуска
+    const spinButton = document.getElementById('spinMeaoSpinButton'); // Кнопка запуска
+    const plusBetButton = document.getElementById('plusBetMeaoSpin'); // Кнопка запуска
+    const minusBetButton = document.getElementById('minusBetMeaoSpin'); // Кнопка запуска
 
     if (spinning) return; // Если уже идёт вращение, игнорируем нажатие
     spinning = true; // Устанавливаем флаг вращения
@@ -148,21 +151,21 @@ function enforceLuckDuringSpin() {
 
         // Обновляем центральную строку на барабанах
         reels.forEach((reel) => {
-            reel[2] = jackpotSymbol; // Ставим джекпот в центральную строку
+            reel[1] = jackpotSymbol; // Ставим джекпот в центральную строку
         });
     }
 }
 
 // Логирование центральной строки
 function logVisibleSymbols() {
-    const centralRowSymbols = reels.map(reel => reel[2]); // Извлекаем 3-й символ из каждого барабана
+    const centralRowSymbols = reels.map(reel => reel[1]); // Извлекаем 3-й символ из каждого барабана
     console.log('Central row result:', centralRowSymbols.join(' | '));
 }
 
 // Анализ центральной строки для определения выигрыша
 function analyzeWinning() {
     let skipResult = false;
-    const centralRowSymbols = reels.map(reel => reel[2]); // Извлекаем 3-й символ из каждого барабана
+    const centralRowSymbols = reels.map(reel => reel[1]); // Извлекаем 3-й символ из каждого барабана
     const symbolCount = centralRowSymbols.reduce((counts, symbol) => {
         counts[symbol] = (counts[symbol] || 0) + 1;
         return counts;
@@ -172,50 +175,52 @@ function analyzeWinning() {
     const maxCount = Math.max(...Object.values(symbolCount));
 
     let winAmount = 0;
-    if (maxCount === 4) {
-        winAmount = 2; // 4 одинаковых
+    if (maxCount === 5) {
+        winAmount = 3; // 5 одинаковых
+    } else if (maxCount === 4) {
+        winAmount = 2; // 3 одинаковых
     } else if (maxCount === 3) {
         winAmount = 1.5; // 3 одинаковых
     } else if (maxCount === 2) {
         winAmount = 1; // 2 одинаковых
     }
 
-    let currentBet = document.getElementById('currentBetSpinJack').innerText; // Заглушка ставки
+    let currentBet = document.getElementById('currentBetMeaoSpin').innerText; // Заглушка ставки
     let result = parseFloat(winAmount) * parseFloat(currentBet);
 
+    let score = localStorage.getItem('score');
     localStorage.setItem('score', parseFloat(score) + result);
 
     if (result !== 0) {
-        highlightThirdRow();
+        highlightSecondRow();
     }
 
     // Проверка, находится ли пользователь на игровом экране
-    if (!isCurrentScreen('spinJackPage')) {
+    if (!isCurrentScreen('meaoSpinPage')) {
         skipResult = true; // Принудительно пропускаем результат, если экран сменился
     }
 
     // Проверяем, нужно ли показывать результат и обновлять счёт
     if (!skipResult) {
         setTimeout(() => {
-            localStorage.setItem('lastGame', 'spinJackPage');
-
-            if (result !== 0) {
-                switchScreen('winPage', result, 'url(../res/happy_tiger/spin_jack_bg.png) no-repeat')
-            } else {
-                switchScreen('failPage')
-            }
+            localStorage.setItem('lastGame', 'meaoSpinPage');
+            document.getElementById('showResultMeaoSpinValue').textContent = result;
+            document.getElementById('showResultMeaoSpin').hidden = false;
+            document.getElementById('scoreValue').innerText = localStorage.getItem('score');
         }, 1000);
     }
-    const spinButton = document.getElementById('spinSpinJackButton'); // Кнопка запуска
-    const plusBetButton = document.getElementById('plusBetSpinJack'); // Кнопка запуска
-    const minusBetButton = document.getElementById('minusBetSpinJack'); // Кнопка запуска
+    document.getElementById('showResultMeaoSpin').hidden = true;
+
+    const spinButton = document.getElementById('spinMeaoSpinButton'); // Кнопка запуска
+    const plusBetButton = document.getElementById('plusBetMeaoSpin'); // Кнопка запуска
+    const minusBetButton = document.getElementById('minusBetMeaoSpin'); // Кнопка запуска
 
     spinButton.disabled = false; // Разблокируем кнопку
     plusBetButton.disabled = false; // Разблокируем кнопку
     minusBetButton.disabled = false; // Разблокируем кнопку
 }
 
-function highlightThirdRow() {
+function highlightSecondRow() {
     // Получаем все элементы барабанов
     const reels = document.querySelectorAll('.reel');
 
@@ -225,28 +230,28 @@ function highlightThirdRow() {
         const rows = reel.querySelectorAll('.item');
 
         // Если третья строка существует, добавляем к ней класс для подсветки
-        if (rows[2]) {
+        if (rows[1]) {
             const thirdCell = document.createElement('div'); // Создаем третью ячейку, если ее нет
             thirdCell.classList.add('highlight'); // Добавляем базовый класс и эффект
-            rows[2].appendChild(thirdCell); // Добавить третью ячейку в барабан
+            rows[1].appendChild(thirdCell); // Добавить третью ячейку в барабан
         }
     });
 }
 
-const minusBetRBtn = document.getElementById('minusBetSpinJack');
+const minusBetRBtn = document.getElementById('minusBetMeaoSpin');
 if (minusBetRBtn) {
     minusBetRBtn.addEventListener('click', () => {
-        let bet = document.getElementById('currentBetSpinJack');
+        let bet = document.getElementById('currentBetMeaoSpin');
         if (bet.innerText > 0 && bet.innerText !== '10') {
             bet.innerText = parseFloat(bet.innerText) - 10;
         }
     });
 }
 
-const plusBetRBtn = document.getElementById('plusBetSpinJack');
+const plusBetRBtn = document.getElementById('plusBetMeaoSpin');
 if (plusBetRBtn) {
     plusBetRBtn.addEventListener('click', () => {
-        let bet = document.getElementById('currentBetSpinJack');
+        let bet = document.getElementById('currentBetMeaoSpin');
         let currentBet = parseFloat(bet.innerText);
 
         if (currentBet + 10 <= score) {
@@ -256,4 +261,4 @@ if (plusBetRBtn) {
 }
 
 // Обработчик нажатия кнопки
-document.getElementById('spinSpinJackButton').addEventListener('click', spinReels);
+document.getElementById('spinMeaoSpinButton').addEventListener('click', spinReels);

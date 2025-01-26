@@ -54,6 +54,12 @@ function lockPortraitOrientation() {
     }
 }
 
+function lockLandOrientation() {
+    if (window.ScreenOrientationController && typeof window.ScreenOrientationController.lockOrientation === "function") {
+        window.ScreenOrientationController.lockOrientation('landscape');
+    }
+}
+
 App.addListener('backButton', ({canGoBack}) => {
     stopMusic(); // Явно останавливаем музыку перед минимизацией приложения
     App.minimizeApp();

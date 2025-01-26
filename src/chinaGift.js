@@ -149,17 +149,21 @@ function endGameRoulette(winningSegment, spinButton, minusBtn, plusBtn) {
     gameOverRoulette = true; // Игра завершена
 
     // Проверка, находится ли пользователь на игровом экране
-    if (!isCurrentScreen('mostWantedPage')) {
+    if (!isCurrentScreen('chinaGiftPage')) {
         skipResult = true; // Принудительно пропускаем результат, если экран сменился
     }
 
     if (!skipResult) {
         setTimeout(() => {
-            localStorage.setItem('lastGame', 'mostWantedPage');
+            localStorage.setItem('lastGame', 'chinaGiftPage');
 
             if (result !== 0) {
+                console.log('WIN');
+                console.log('-------------------------------');
                 switchScreen('winPage', result, 'url(../res/happy_tiger/china_gift_bg.png) no-repeat');
             } else {
+                console.log('FAIL');
+                console.log('-------------------------------');
                 switchScreen('failPage');
             }
             spinButton.disabled = false; // Разблокируем кнопку после показа результата
