@@ -70,7 +70,7 @@
                 <img class="game_bg" src="res/happy_tiger/bg.png">
             </label>
             <label class="checkbox-item">
-                <input type="radio" name="image-checkbox" value="mostWantedPage" class="image-checkbox" onchange="adjustImages(this)">
+                <input type="radio" name="image-checkbox" value="goldTigerPage" class="image-checkbox" onchange="adjustImages(this)">
                 <img class="game_img" src="res/happy_tiger/gold_tiger.png">
                 <span class="game_text">GOLD TIGER</span>
                 <img class="game_bg" src="res/happy_tiger/bg.png">
@@ -219,21 +219,18 @@
         </div>
     </div>
 
-    <div id="oldSaloonPage" class="screen hidden">
-        <div id="oldSaloonCanvas"></div>
-        <div id="startOldSaloonGame">
-            <div class="text blink">
-                <p>Tap to start</p>
+    <div id="goldTigerPage" class="screen hidden">
+        <div class="goldTigerContainer">
+            <div class="timer-container">
+                <div class="preloader"></div>
             </div>
-        </div>
-        <div id="gameScoreOldSaloon">
-            <button id="backOldSaloon">
-                <img src="res/wild_west/back_button.png">
-            </button>
-            <button id="scoreGameOldSaloon">
-                <span id="scoreGameOS">0</span>
-                <img src="res/wild_west/empty_button.png">
-            </button>
+            <div id="timer">00:15</div>
+            <div class="grid"></div>
+            <div class="controls">
+                <button id="goldTigerStart">
+                    <img src="res/happy_tiger/play_button.png">
+                </button>
+            </div>
         </div>
     </div>
 </div>

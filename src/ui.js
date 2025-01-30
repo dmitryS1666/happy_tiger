@@ -12,7 +12,8 @@ import {checkFirstRunAndLoadData} from "./index";
 import { Plugins } from '@capacitor/core';
 import {setupRoulette} from "./chinaGift";
 import {setupMeaoSpin} from "./meaoSpin";
-import {startGame} from "./oldSaloon";
+import {createGrid} from "./goldTiger";
+// import {startGame} from "./goldTiger";
 
 const { App } = Plugins;
 
@@ -312,10 +313,6 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
 
     // Показываем прелоадер
     const targetScreen = document.getElementById(screenId);
-    console.log('targetScreen: ');
-    console.log(targetScreen);
-    console.log(targetScreen.classList);
-    console.log('-----------------------------');
     targetScreen.classList.remove('hidden');
     showInfoBlock(false, false, false);
 
@@ -345,8 +342,9 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
         showInfoBlock(true, true, false);
         setupRoulette();
     }
-    if (screenId === 'oldSaloonPage') {
+    if (screenId === 'goldTigerPage') {
         showInfoBlock(true, true, false);
+        createGrid();
     }
 
     document.getElementById('scoreValue').innerText = localStorage.getItem('score');

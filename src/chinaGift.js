@@ -158,12 +158,8 @@ function endGameRoulette(winningSegment, spinButton, minusBtn, plusBtn) {
             localStorage.setItem('lastGame', 'chinaGiftPage');
 
             if (result !== 0) {
-                console.log('WIN');
-                console.log('-------------------------------');
                 switchScreen('winPage', result, 'url(../res/happy_tiger/china_gift_bg.png) no-repeat');
             } else {
-                console.log('FAIL');
-                console.log('-------------------------------');
                 switchScreen('failPage');
             }
             spinButton.disabled = false; // Разблокируем кнопку после показа результата

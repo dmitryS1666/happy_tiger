@@ -40,7 +40,7 @@ document.getElementById('toggle-music').addEventListener('change', (event) => {
     if (!settings.music) {
         stopMusic();
     } else {
-        runMusic();
+        // runMusic();
     }
 });
 
