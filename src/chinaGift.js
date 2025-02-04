@@ -20,6 +20,7 @@ roulettePointerImage.src = 'res/happy_tiger/pointer.png'; // Заглушка: �
 export function setupRoulette() {
     rouletteCanvas = document.getElementById('rouletteCanvas');
     rouletteCtx = rouletteCanvas.getContext('2d');
+    localStorage.setItem('lastGame', 'chinaGiftPage');
 
     drawRoulette(); // Отрисовываем рулетку
 

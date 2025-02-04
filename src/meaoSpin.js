@@ -1,4 +1,4 @@
-import {isCurrentScreen, switchScreen} from "./ui";
+import {isCurrentScreen} from "./ui";
 import {slotEffect} from "./settings";
 
 const symbols = [
@@ -19,6 +19,8 @@ let reelElements = [];
 let score;
 
 export function setupMeaoSpin() {
+    localStorage.setItem('lastGame', 'meaoSpinPage');
+
     score = localStorage.getItem('score') || 0;
     reelElements = [
         document.getElementById('reel1'),
@@ -159,7 +161,6 @@ function enforceLuckDuringSpin() {
 // Логирование центральной строки
 function logVisibleSymbols() {
     const centralRowSymbols = reels.map(reel => reel[1]); // Извлекаем 3-й символ из каждого барабана
-    console.log('Central row result:', centralRowSymbols.join(' | '));
 }
 
 // Анализ центральной строки для определения выигрыша

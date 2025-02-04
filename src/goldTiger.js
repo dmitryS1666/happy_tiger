@@ -1,6 +1,5 @@
 // Импортируем функции для смены экранов и звуков
 import { isCurrentScreen, switchScreen } from "./ui";
-import { tapEffect, shootEffect, hitEffect } from "./settings";
 
 const grid = document.querySelector('.grid');
 const startButton = document.getElementById('goldTigerStart');
@@ -41,6 +40,7 @@ function shuffle(array) {
 export function createGrid() {
     grid.innerHTML = ''; // Очистка поля перед созданием
     const pairs = createPairs();
+    localStorage.setItem('lastGame', 'goldTigerPage');
 
     for (let i = 0; i < 9; i++) {
         const cell = document.createElement('div');

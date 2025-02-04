@@ -8,7 +8,7 @@ import {
     settings
 } from './settings'
 
-import {checkFirstRunAndLoadData} from "./index";
+import {checkFirstRunAndLoadData, lockLandOrientation, lockPortraitOrientation} from "./index";
 import { Plugins } from '@capacitor/core';
 import {setupRoulette} from "./chinaGift";
 import {setupMeaoSpin} from "./meaoSpin";
@@ -24,7 +24,7 @@ if (readPrivacyPolicyBtn) {
         clickEffect();
 
         const openInExternalBrowser = async () => {
-            window.open('https://appwildwest.com/policy', '_system'); // открывает внешний браузер
+            window.open('https://happytiger.com/policy', '_system'); // открывает внешний браузер
         };
 
         openInExternalBrowser();
@@ -38,7 +38,7 @@ if (privacyBtn) {
         clickEffect();
 
         const openInExternalBrowser = async () => {
-            window.open('https://appwildwest.com/policy', '_system'); // открывает внешний браузер
+            window.open('https://happytiger.com/policy', '_system'); // открывает внешний браузер
         };
 
         openInExternalBrowser();
@@ -51,7 +51,7 @@ if (privacyLink) {
         clickEffect();
 
         const openInExternalBrowser = async () => {
-            window.open('https://appwildwest.com/policy', '_system'); // открывает внешний браузер
+            window.open('https://happytiger.com/policy', '_system'); // открывает внешний браузер
         };
 
         openInExternalBrowser();
@@ -65,7 +65,7 @@ if (privacyPolicyBtn) {
         clickEffect();
 
         const openInExternalBrowser = async () => {
-            window.open('https://appwildwest.com/policy', '_system'); // открывает внешний браузер
+            window.open('https://happytiger.com/policy', '_system'); // открывает внешний браузер
         };
 
         openInExternalBrowser();
@@ -303,6 +303,7 @@ function showInfoBlock(mainBlock, showScore, showPolicyLink) {
 
 function switchScreen(screenId, levelScore= 0, winBg = 'default') {
     clickEffect();
+    lockPortraitOrientation();
 
     localStorage.setItem('lastPage', getCurrentPage());
 
@@ -335,14 +336,17 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
         runMusic();
     }
     if (screenId === 'meaoSpinPage') {
+        lockLandOrientation();
         showInfoBlock(true, true, false);
         setupMeaoSpin();
     }
     if (screenId === 'chinaGiftPage') {
+        lockPortraitOrientation();
         showInfoBlock(true, true, false);
         setupRoulette();
     }
     if (screenId === 'goldTigerPage') {
+        lockPortraitOrientation();
         showInfoBlock(true, true, false);
         createGrid();
     }

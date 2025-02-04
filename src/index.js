@@ -38,9 +38,6 @@ export async function displayDefaultGames() {
 export function checkFirstRunAndLoadData() {
     let acceptPrivacy = localStorage.getItem('acceptPolicy');
 
-    console.log(acceptPrivacy);
-    console.log('---------------------------------------------');
-
     if (acceptPrivacy) {
         switchScreen('firstPage');
     } else {
@@ -48,13 +45,13 @@ export function checkFirstRunAndLoadData() {
     }
 }
 
-function lockPortraitOrientation() {
+export function lockPortraitOrientation() {
     if (window.ScreenOrientationController && typeof window.ScreenOrientationController.lockOrientation === "function") {
         window.ScreenOrientationController.lockOrientation('portrait');
     }
 }
 
-function lockLandOrientation() {
+export function lockLandOrientation() {
     if (window.ScreenOrientationController && typeof window.ScreenOrientationController.lockOrientation === "function") {
         window.ScreenOrientationController.lockOrientation('landscape');
     }
@@ -64,19 +61,6 @@ App.addListener('backButton', ({canGoBack}) => {
     stopMusic(); // Явно останавливаем музыку перед минимизацией приложения
     App.minimizeApp();
 });
-
-// Обработчик кнопки "Назад"
-// App.addListener('backButton', ({ canGoBack }) => {
-//     stopMusic(); // Останавливаем музыку
-//
-//     if (screenHistory.length > 1) {
-//         screenHistory.pop(); // Убираем текущий экран из стека
-//         const previousScreen = screenHistory[screenHistory.length - 1]; // Предыдущий экран
-//         switchScreen(previousScreen); // Переход на предыдущий экран
-//     } else {
-//         App.minimizeApp(); // Если больше нельзя вернуться назад, минимизируем приложение
-//     }
-// });
 
 // Слушатель для восстановления/сворачивания приложения, включая кнопку "Домой"
 App.addListener('appStateChange', ({isActive}) => {
