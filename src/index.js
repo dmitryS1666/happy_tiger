@@ -3,8 +3,6 @@ import {showPreloader, switchScreen} from "./ui";
 
 import {App} from "@capacitor/app";
 
-let screenHistory = []; // Массив для хранения истории экранов
-
 window.displayDefaultGames = displayDefaultGames;
 
 document.addEventListener('DOMContentLoaded', () => {

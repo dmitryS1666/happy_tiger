@@ -791,6 +791,10 @@ input:checked + .switch:active::before {
     transform: translateX(-50%);
 }
 
+.click img {
+    transform: scale(0.9) !important;
+}
+
 .timer-container {
     position: relative;
     width: 120px;
@@ -957,7 +961,7 @@ input:checked + .switch:active::before {
     left: 50%;
     transform: translateX(-50%);
     position: absolute;
-    bottom: 50px;
+    bottom: 65px;
 }
 
 .reel {
@@ -982,6 +986,10 @@ input:checked + .switch:active::before {
     right: 0;
     margin: auto;
     z-index: 2;
+}
+
+#reel1, #reel2, #reel3, #reel4 {
+    border-right: 2px solid #FFC400;
 }
 
 .betControlMeaoSpin {
