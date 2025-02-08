@@ -2,22 +2,24 @@ let failSound = new Audio('res/audio/fail.mp3');
 let winSound = new Audio('res/audio/win.mp3');
 let rouletteSound = new Audio('res/audio/wheel_spin.mp3');
 let clickSound = new Audio('res/audio/click.mp3');
-let tapSound = new Audio('res/audio/tap.mp3');
-let shootSound = new Audio('res/audio/shoot.mp3');
 let selectSound = new Audio('res/audio/select.mp3');
-let hitSound = new Audio('res/audio/hit.mp3');
 let slotSound = new Audio('res/audio/slot_sound.mp3');
 
 let menuMusic;
-let settings;
+let settings = { music: true, vibration: true };
+
+function getSettings() {
+    return { ...settings }; // Возвращаем копию, чтобы избежать изменений извне
+}
+
 // Загрузка настроек из LocalStorage
 function loadSettings() {
     menuMusic = document.getElementById('menuMusic');
-    localStorage.setItem('happyTigerSettings', JSON.stringify({ music: true, vibration: true }));
-    localStorage.setItem('score', 1000);
-
     const storedSettings = JSON.parse(localStorage.getItem('happyTigerSettings'));
-    if (storedSettings) {
+
+    if (!storedSettings) {
+        localStorage.setItem('happyTigerSettings', JSON.stringify(settings));
+    } else {
         settings = storedSettings;
     }
 
@@ -61,80 +63,62 @@ function stopMusic() {
 }
 
 function runMusic() {
-    menuMusic.volume = 0.3;
-
     if (settings.music && (menuMusic.paused || menuMusic.currentTime === 0)) {
+        menuMusic.volume = 0.3;
         menuMusic.play();
     }
 }
 
 function vibrate(duration) {
-    if (settings.vibration) {
+    if (settings.vibration && navigator.vibrate) {
         navigator.vibrate(duration);
     }
 }
 
-function clickEffect() {
+function playSound(sound) {
     if (settings.music) {
-        clickSound.play();
-    }
-
-    if (settings.vibration) {
-        vibrate(100);
+        if (sound.currentTime > 0) {
+            sound.currentTime = 0;
+        }
+        sound.play();
     }
 }
 
-function tapEffect() {
-    if (settings.music) {
-        tapSound.play();
-    }
+function clickEffect() {
+    playSound(clickSound);
+    vibrate(100);
 }
 
 function selectEffect() {
-    if (settings.music) {
-        selectSound.play();
-    }
-}
-
-function hitEffect() {
-    if (settings.music) {
-        hitSound.currentTime = 0; // Обнуляем звук, чтобы он проигрывался с начала
-        hitSound.play();
-    }
-}
-
-function shootEffect() {
-    if (settings.music) {
-        shootSound.currentTime = 0; // Обнуляем звук, чтобы он проигрывался с начала
-        shootSound.play();
-    }
+    playSound(selectSound);
 }
 
 function rouletteEffect() {
-    if (settings.music) {
-        rouletteSound.play();
-    }
+    playSound(rouletteSound);
+}
+
+function winEffect() {
+    playSound(winSound);
+}
+
+function failEffect() {
+    playSound(failSound);
 }
 
 function slotEffect() {
-    if (settings.music) {
-        slotSound.play();
-    }
+    playSound(slotSound);
 }
 
 export {
     slotEffect,
     rouletteEffect,
-    hitEffect,
-    shootEffect,
     selectEffect,
-    tapEffect,
     clickEffect,
-    settings,
     loadSettings,
     saveSettings,
-    failSound,
-    winSound,
+    failEffect,
+    winEffect,
     stopMusic,
-    runMusic
+    runMusic,
+    getSettings
 };

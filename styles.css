@@ -791,6 +791,10 @@ input:checked + .switch:active::before {
     transform: translateX(-50%);
 }
 
+.click img {
+    transform: scale(0.9) !important;
+}
+
 .timer-container {
     position: relative;
     width: 120px;
@@ -870,11 +874,15 @@ input:checked + .switch:active::before {
     font-size: 24px;
     left: 50%;
 
-    color: white;
     transform: translateX(-50%);
-    border: 5px solid #0000;
+
+    color: white;
     border-radius: 35px;
-    background: conic-gradient(#84192F 0 0) padding-box, linear-gradient(#FFC61C, #997711) border-box;
+    border: 5px solid #ffc61c;
+    background: #84182F;
+
+    /*border: 5px solid #0000;*/
+    /*background: conic-gradient(#84192F 0 0) padding-box, linear-gradient(#FFC61C, #997711) border-box;*/
 }
 
 .betControlRoulette button {
@@ -934,7 +942,7 @@ input:checked + .switch:active::before {
     position: absolute;
     top: 5px;
     width: 630px;
-    height: 90%;
+    height: 360px;
     left: 50%;
     transform: translateX(-50%);
     background-image: url(res/happy_tiger/meao_spin.png);
@@ -957,7 +965,7 @@ input:checked + .switch:active::before {
     left: 50%;
     transform: translateX(-50%);
     position: absolute;
-    bottom: 50px;
+    bottom: 65px;
 }
 
 .reel {
@@ -984,6 +992,10 @@ input:checked + .switch:active::before {
     z-index: 2;
 }
 
+#reel1, #reel2, #reel3, #reel4 {
+    border-right: 2px solid #FFC400;
+}
+
 .betControlMeaoSpin {
     position: relative;
     left: 30px;
@@ -1003,9 +1015,12 @@ input:checked + .switch:active::before {
     transform: translateX(-50%);
 
     color: white;
-    border: 5px solid #0000;
     border-radius: 35px;
-    background: conic-gradient(#84192F 0 0) padding-box, linear-gradient(#FFC61C, #997711) border-box;
+    border: 5px solid #ffc61c;
+    background: #84182F;
+
+    /*border: 5px solid #0000;*/
+    /*background: conic-gradient(#84192F 0 0) padding-box, linear-gradient(#FFC61C, #997711) border-box;*/
 }
 
 .betControlMeaoSpin button {

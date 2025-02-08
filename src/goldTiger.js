@@ -1,5 +1,5 @@
 // Импортируем функции для смены экранов и звуков
-import { isCurrentScreen, switchScreen } from "./ui";
+import {isCurrentScreen, showPreloader, switchScreen} from "./ui";
 
 const grid = document.querySelector('.grid');
 const startButton = document.getElementById('goldTigerStart');
@@ -142,11 +142,16 @@ document.addEventListener('visibilitychange', () => {
 
 // Обработчик старта игры
 startButton.addEventListener('click', () => {
+    startButton.classList.add('click');
     resetGame();
     gameActive = true;
     startButton.disabled = true;
     createGrid();
     startTimer();
+
+    setTimeout(() => {
+        startButton.classList.remove('click');
+    }, 300);
 });
 
 // Запуск таймера

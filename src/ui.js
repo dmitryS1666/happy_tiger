@@ -1,19 +1,17 @@
 import {
-    failSound,
     runMusic,
     stopMusic,
-    winSound,
     clickEffect,
     selectEffect,
-    settings
+    winEffect,
+    failEffect
 } from './settings'
 
-import {checkFirstRunAndLoadData, lockLandOrientation, lockPortraitOrientation} from "./index";
+import {lockLandOrientation, lockPortraitOrientation} from "./index";
 import { Plugins } from '@capacitor/core';
 import {setupRoulette} from "./chinaGift";
 import {setupMeaoSpin} from "./meaoSpin";
 import {createGrid} from "./goldTiger";
-// import {startGame} from "./goldTiger";
 
 const { App } = Plugins;
 
@@ -157,9 +155,11 @@ if (goBackBtn) {
     goBackBtn.addEventListener('click', () => {
         if (getCurrentPage() === 'gamesPage') {
             switchScreen('firstPage');
-        } else if (getCurrentPage() === 'winPage' || getCurrentPage() === 'failPage' ) {
-            switchScreen('gamesPage');
         } else if (getCurrentPage() === 'meaoSpinPage') {
+            switchScreen('gamesPage');
+        } else if (getCurrentPage() === 'chinaGiftPage') {
+            switchScreen('gamesPage');
+        } else if (getCurrentPage() === 'goldTigerPage') {
             switchScreen('gamesPage');
         } else {
             let page = localStorage.getItem('lastPage');
@@ -278,7 +278,7 @@ function showPreloader() {
     });
 }
 
-function showInfoBlock(mainBlock, showScore, showPolicyLink) {
+function showInfoBlock(mainBlock, showScore, showPolicyLink, showSettingsButton = true) {
     const infoBlock = document.getElementById('containerConfig');
     if (mainBlock) {
         infoBlock.classList.remove('hidden');
@@ -299,6 +299,13 @@ function showInfoBlock(mainBlock, showScore, showPolicyLink) {
     } else {
         privacy_link_config.classList.add('hidden');
     }
+
+    const settingsButtonEl = document.getElementById('settingsButton');
+    if (showSettingsButton) {
+        settingsButtonEl.classList.remove('hidden');
+    } else {
+        settingsButtonEl.classList.add('hidden');
+    }
 }
 
 function switchScreen(screenId, levelScore= 0, winBg = 'default') {
@@ -317,23 +324,24 @@ function switchScreen(screenId, levelScore= 0, winBg = 'default') {
     targetScreen.classList.remove('hidden');
     showInfoBlock(false, false, false);
 
-    if (screenId === 'settingsPage' || screenId === 'gamesPage') {
+    if (screenId === 'gamesPage') {
         showInfoBlock(true, false, true);
+    }
+
+    if (screenId === 'settingsPage') {
+        showInfoBlock(true, false, true, false);
     }
 
     if (screenId === 'winPage') {
         stopMusic();
         showWinPage(levelScore, winBg);
-        showInfoBlock(true, true, false);
+        showInfoBlock(true, true, false, false);
     }
     if (screenId === 'failPage') {
         stopMusic();
-        if (settings.music) {
-            failSound.volume = 0.5;
-            failSound.play()
-        }
-        showInfoBlock(true, true, false);
-        runMusic();
+        failEffect();
+        showInfoBlock(true, true, false, false);
+        setTimeout(() => { runMusic(); }, 1500);
     }
     if (screenId === 'meaoSpinPage') {
         lockLandOrientation();
@@ -364,10 +372,7 @@ function showWinPage(levelScore, bg) {
     winPage.style.background = bg;
     winPage.style.backgroundSize = 'cover';
 
-    if (settings.music) {
-        winSound.volume = 0.5;
-        winSound.play();
-    }
+    winEffect();
 
     valueElement.innerHTML = `+${levelScore}`;
     valueElement.classList.remove('hidden');
